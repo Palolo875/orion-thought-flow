@@ -1,0 +1,63 @@
+import { useState, useEffect } from "react";
+
+export const WelcomeMessage = () => {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const updateMessage = () => {
+      const hour = new Date().getHours();
+      const userName = ""; // Peut être personnalisé avec le profil utilisateur
+
+      let greeting = "";
+      
+      if (hour >= 5 && hour < 12) {
+        const morningMessages = [
+          `Bonjour${userName ? ` ${userName}` : ""}. Prêt à commencer la journée ?`,
+          "Un café, une idée ? Bonjour !",
+          "Que pouvons-nous créer ce matin ?"
+        ];
+        greeting = morningMessages[Math.floor(Math.random() * morningMessages.length)];
+      } else if (hour >= 12 && hour < 18) {
+        const afternoonMessages = [
+          "Bon après-midi ! Comment puis-je vous aider à avancer ?",
+          "J'espère que votre journée se passe bien. Quelle est notre prochaine tâche ?",
+          "Une pause créative ? Ou un problème à résoudre ?"
+        ];
+        greeting = afternoonMessages[Math.floor(Math.random() * afternoonMessages.length)];
+      } else if (hour >= 18 && hour < 22) {
+        const eveningMessages = [
+          "Bonsoir. Le moment idéal pour explorer une nouvelle idée.",
+          "Comment s'est passée votre journée ? Prêt à vous détendre ou à finaliser un projet ?",
+          "La soirée est propice à la réflexion. Que puis-je faire pour vous ?"
+        ];
+        greeting = eveningMessages[Math.floor(Math.random() * eveningMessages.length)];
+      } else {
+        const nightMessages = [
+          "Il se fait tard. Une dernière pensée ou une question pour la nuit ?",
+          "Les meilleures idées naissent souvent la nuit. En avez-vous une à me confier ?",
+          "Bonsoir. Je suis là si l'inspiration vous empêche de dormir."
+        ];
+        greeting = nightMessages[Math.floor(Math.random() * nightMessages.length)];
+      }
+      
+      setMessage(greeting);
+    };
+
+    updateMessage();
+    // Mettre à jour le message toutes les heures
+    const interval = setInterval(updateMessage, 3600000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="text-center space-y-4 animate-slide-up">
+      <h1 className="text-4xl md:text-6xl font-light tracking-tight">
+        ORION
+      </h1>
+      <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        {message}
+      </p>
+    </div>
+  );
+};
