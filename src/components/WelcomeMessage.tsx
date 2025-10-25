@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import decorationFlow from "@/assets/decoration-flow.png";
+import orionLogo from "@/assets/orion-logo.png";
 
 export const WelcomeMessage = () => {
   const [message, setMessage] = useState("");
@@ -51,11 +53,28 @@ export const WelcomeMessage = () => {
   }, []);
 
   return (
-    <div className="text-center space-y-4 animate-slide-up">
-      <h1 className="text-4xl md:text-6xl font-light tracking-tight">
+    <div className="text-center space-y-6 animate-slide-up relative">
+      {/* Illustration décorative en arrière-plan */}
+      <div className="absolute inset-0 -z-10 opacity-10 flex items-center justify-center overflow-hidden">
+        <img 
+          src={decorationFlow} 
+          alt="" 
+          className="w-full max-w-2xl object-contain animate-float"
+          aria-hidden="true"
+        />
+      </div>
+      
+      <div className="flex items-center justify-center gap-4 mb-4">
+        <img 
+          src={orionLogo} 
+          alt="ORION" 
+          className="w-16 h-16 md:w-24 md:h-24 object-contain opacity-90"
+        />
+      </div>
+      <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight">
         ORION
       </h1>
-      <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+      <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
         {message}
       </p>
     </div>

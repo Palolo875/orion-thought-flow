@@ -59,55 +59,64 @@ export const ChatInput = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 bg-background/80 backdrop-blur-lg border-t">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-end gap-2 bg-card rounded-3xl shadow-lg border p-3">
+    <div className="fixed bottom-0 left-0 right-0 p-3 md:p-6 bg-background/95 backdrop-blur-xl border-t border-border/50">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-end gap-2 bg-card/50 backdrop-blur rounded-3xl shadow-2xl border border-border/50 p-4 md:p-5">
           {/* Bouton Upload */}
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="shrink-0 rounded-full hover:bg-muted"
+                className="shrink-0 rounded-full hover:bg-accent/20 hover:text-accent transition-colors"
               >
-                <Plus className="h-5 w-5" />
+                <Plus className="h-5 w-5" strokeWidth={1.5} />
               </Button>
             </PopoverTrigger>
             <PopoverContent side="top" className="w-56 p-2">
               <div className="flex flex-col gap-1">
                 <Button
                   variant="ghost"
-                  className="justify-start"
+                  className="justify-start hover:bg-accent/20 hover:text-accent"
                   onClick={() => handleFileSelect("image")}
                 >
-                  🖼️ Importer une Image
+                  <span className="mr-2">🖼️</span> Importer une Image
                 </Button>
                 <Button
                   variant="ghost"
-                  className="justify-start"
+                  className="justify-start hover:bg-accent/20 hover:text-accent"
                   onClick={() => handleFileSelect("document")}
                 >
-                  📄 Importer un Document
+                  <span className="mr-2">📄</span> Importer un Document
                 </Button>
                 <Button
                   variant="ghost"
-                  className="justify-start"
+                  className="justify-start hover:bg-accent/20 hover:text-accent"
                   onClick={() => handleFileSelect("*")}
                 >
-                  📎 Joindre un Fichier
+                  <span className="mr-2">📎</span> Joindre un Fichier
                 </Button>
               </div>
             </PopoverContent>
           </Popover>
 
-          {/* Zone de saisie */}
+          {/* Zone de saisie - Now auto-expands */}
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Attribuez une tâche ou explorez une idée..."
-            className="min-h-[50px] max-h-[200px] border-0 resize-none focus-visible:ring-0 bg-transparent"
+            className="min-h-[56px] max-h-[300px] border-0 resize-none focus-visible:ring-0 bg-transparent text-base md:text-lg leading-relaxed px-2"
             rows={1}
+            style={{
+              height: 'auto',
+              overflow: 'hidden'
+            }}
+            onInput={(e) => {
+              const target = e.target as HTMLTextAreaElement;
+              target.style.height = 'auto';
+              target.style.height = target.scrollHeight + 'px';
+            }}
           />
 
           {/* Boutons d'action */}
@@ -115,10 +124,10 @@ export const ChatInput = ({
             <Button
               variant="ghost"
               size="icon"
-              className={`rounded-full hover:bg-muted ${isRecording ? 'text-accent animate-pulse-glow' : ''}`}
+              className={`rounded-full hover:bg-accent/20 transition-all ${isRecording ? 'text-accent animate-pulse-glow bg-accent/10' : 'hover:text-accent'}`}
               onClick={toggleRecording}
             >
-              <Mic className="h-5 w-5" />
+              <Mic className="h-5 w-5" strokeWidth={1.5} />
             </Button>
 
             <Popover>
@@ -126,33 +135,33 @@ export const ChatInput = ({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-full hover:bg-muted"
+                  className="rounded-full hover:bg-accent/20 hover:text-accent transition-colors"
                 >
-                  <Wrench className="h-5 w-5" />
+                  <Wrench className="h-5 w-5" strokeWidth={1.5} />
                 </Button>
               </PopoverTrigger>
               <PopoverContent side="top" className="w-56 p-2">
                 <div className="flex flex-col gap-1">
                   <Button
                     variant="ghost"
-                    className="justify-start"
+                    className="justify-start hover:bg-accent/20 hover:text-accent"
                     onClick={() => onToolSelect?.("calculator")}
                   >
-                    🔢 Calculatrice
+                    <span className="mr-2">🔢</span> Calculatrice
                   </Button>
                   <Button
                     variant="ghost"
-                    className="justify-start"
+                    className="justify-start hover:bg-accent/20 hover:text-accent"
                     onClick={() => onToolSelect?.("translator")}
                   >
-                    🌐 Traducteur
+                    <span className="mr-2">🌐</span> Traducteur
                   </Button>
                   <Button
                     variant="ghost"
-                    className="justify-start"
+                    className="justify-start hover:bg-accent/20 hover:text-accent"
                     onClick={() => onToolSelect?.("search")}
                   >
-                    🔍 Recherche Web
+                    <span className="mr-2">🔍</span> Recherche Web
                   </Button>
                 </div>
               </PopoverContent>
@@ -161,10 +170,10 @@ export const ChatInput = ({
             <Button
               onClick={handleSend}
               disabled={!input.trim()}
-              className="rounded-full bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="rounded-full bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-xl transition-all disabled:opacity-40"
               size="icon"
             >
-              <Send className="h-5 w-5" />
+              <Send className="h-5 w-5" strokeWidth={1.5} />
             </Button>
           </div>
         </div>

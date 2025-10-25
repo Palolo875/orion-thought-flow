@@ -20,30 +20,50 @@ const sections = [
 export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
   const [activeSection, setActiveSection] = useState("profile");
 
+  const getSectionContent = (sectionId: string) => {
+    const section = sections.find(s => s.id === sectionId);
+    return {
+      title: section?.label || '',
+      description: getDescription(sectionId)
+    };
+  };
+
+  const getDescription = (sectionId: string) => {
+    const descriptions: Record<string, string> = {
+      profile: "Configurez vos préférences personnelles et votre profil.",
+      "agent-studio": "Créez et configurez vos agents spécialisés.",
+      "model-foundry": "Sélectionnez et configurez les modèles d'IA.",
+      memory: "Gérez la base de connaissances et la mémoire vectorielle.",
+      security: "Configurez les paramètres de sécurité et de confidentialité.",
+      settings: "Paramètres généraux de l'application."
+    };
+    return descriptions[sectionId] || '';
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl h-[80vh] p-0 gap-0 rounded-3xl overflow-hidden">
-        <div className="flex h-full">
-          {/* Navigation latérale */}
-          <div className="w-48 border-r bg-card/50">
-            <div className="p-4 border-b">
-              <h2 className="font-semibold">Control Center</h2>
+      <DialogContent className="max-w-5xl w-[95vw] h-[90vh] md:h-[85vh] p-0 gap-0 rounded-3xl overflow-hidden">
+        <div className="flex flex-col md:flex-row h-full">
+          {/* Navigation latérale - Responsive */}
+          <div className="w-full md:w-56 lg:w-64 bg-muted/20 border-b md:border-b-0 md:border-r border-border/50">
+            <div className="p-3 md:p-4 border-b border-border/50">
+              <h2 className="font-light text-lg md:text-xl tracking-wide">Control Center</h2>
             </div>
-            <ScrollArea className="h-[calc(80vh-4rem)]">
-              <nav className="p-2 space-y-1">
+            <ScrollArea className="h-auto md:h-[calc(85vh-4rem)]">
+              <nav className="p-2 flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible">
                 {sections.map((section) => {
                   const Icon = section.icon;
                   return (
                     <button
                       key={section.id}
                       onClick={() => setActiveSection(section.id)}
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors ${
+                      className={`flex items-center gap-3 px-3 md:px-4 py-2.5 rounded-xl transition-all whitespace-nowrap ${
                         activeSection === section.id
-                          ? "bg-accent/10 text-accent font-medium"
-                          : "hover:bg-muted text-muted-foreground"
+                          ? "bg-accent/20 text-accent font-medium border-l-2 md:border-l-4 border-accent"
+                          : "hover:bg-accent/10 hover:text-accent text-muted-foreground"
                       }`}
                     >
-                      <Icon className="h-4 w-4" />
+                      <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
                       <span className="text-sm">{section.label}</span>
                     </button>
                   );
@@ -53,27 +73,32 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
           </div>
 
           {/* Contenu */}
-          <div className="flex-1">
+          <div className="flex-1 overflow-hidden">
             <ScrollArea className="h-full">
-              <div className="p-6">
+              <div className="p-4 md:p-6 lg:p-8 space-y-6">
+                <div>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-light mb-2">
+                    {getSectionContent(activeSection).title}
+                  </h3>
+                  <p className="text-sm md:text-base text-muted-foreground">
+                    {getSectionContent(activeSection).description}
+                  </p>
+                </div>
+
                 {activeSection === "profile" && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Profil Utilisateur</h3>
-                    <p className="text-muted-foreground">
-                      Configurez vos préférences personnelles et votre profil.
-                    </p>
-                    <div className="space-y-4">
+                  <div className="space-y-4">
+                    <div className="p-4 md:p-6 bg-card/50 backdrop-blur rounded-2xl border border-border/50 space-y-4">
                       <div>
                         <label className="text-sm font-medium">Nom d'affichage</label>
                         <input
                           type="text"
-                          className="w-full mt-1 px-4 py-2 rounded-xl border bg-background"
+                          className="w-full mt-1 px-3 md:px-4 py-2 md:py-3 rounded-xl border border-border/50 bg-background/50 focus:outline-none focus:ring-2 focus:ring-accent/50 text-sm md:text-base"
                           placeholder="Votre nom"
                         />
                       </div>
                       <div>
                         <label className="text-sm font-medium">Préférences de communication</label>
-                        <select className="w-full mt-1 px-4 py-2 rounded-xl border bg-background">
+                        <select className="w-full mt-1 px-3 md:px-4 py-2 md:py-3 rounded-xl border border-border/50 bg-background/50 focus:outline-none focus:ring-2 focus:ring-accent/50 text-sm md:text-base">
                           <option>Formel</option>
                           <option>Décontracté</option>
                           <option>Technique</option>
@@ -84,67 +109,56 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
                 )}
 
                 {activeSection === "agent-studio" && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Agent Studio</h3>
-                    <p className="text-muted-foreground">
-                      Créez et configurez vos agents spécialisés.
-                    </p>
-                    <div className="grid gap-4">
-                      <div className="p-4 border rounded-2xl">
-                        <h4 className="font-medium mb-2">Agent Logique</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Spécialisé dans l'analyse technique et le raisonnement structuré
-                        </p>
-                      </div>
-                      <div className="p-4 border rounded-2xl">
-                        <h4 className="font-medium mb-2">Agent Créatif</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Génère des idées innovantes et des solutions créatives
-                        </p>
-                      </div>
-                      <div className="p-4 border rounded-2xl">
-                        <h4 className="font-medium mb-2">Agent Vérificateur</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Valide les faits et assure la cohérence des informations
-                        </p>
-                      </div>
+                  <div className="grid gap-3 md:gap-4">
+                    <div className="p-4 md:p-6 border border-border/50 rounded-2xl bg-card/30 backdrop-blur hover:bg-card/50 transition-colors">
+                      <h4 className="font-medium mb-2 text-sm md:text-base">Agent Logique</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground">
+                        Spécialisé dans l'analyse technique et le raisonnement structuré
+                      </p>
+                    </div>
+                    <div className="p-4 md:p-6 border border-border/50 rounded-2xl bg-card/30 backdrop-blur hover:bg-card/50 transition-colors">
+                      <h4 className="font-medium mb-2 text-sm md:text-base">Agent Créatif</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground">
+                        Génère des idées innovantes et des solutions créatives
+                      </p>
+                    </div>
+                    <div className="p-4 md:p-6 border border-border/50 rounded-2xl bg-card/30 backdrop-blur hover:bg-card/50 transition-colors">
+                      <h4 className="font-medium mb-2 text-sm md:text-base">Agent Vérificateur</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground">
+                        Valide les faits et assure la cohérence des informations
+                      </p>
                     </div>
                   </div>
                 )}
 
                 {activeSection === "model-foundry" && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Model Foundry</h3>
-                    <p className="text-muted-foreground">
-                      Sélectionnez et configurez les modèles d'IA.
-                    </p>
+                  <div className="p-4 md:p-6 bg-card/50 backdrop-blur rounded-2xl border border-border/50">
+                    <p className="text-sm md:text-base text-muted-foreground">Configuration des modèles à venir...</p>
                   </div>
                 )}
 
                 {activeSection === "memory" && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Mémoire</h3>
-                    <p className="text-muted-foreground">
-                      Gérez la base de connaissances et la mémoire vectorielle.
-                    </p>
+                  <div className="p-4 md:p-6 bg-card/50 backdrop-blur rounded-2xl border border-border/50">
+                    <p className="text-sm md:text-base text-muted-foreground">Gestion de la mémoire à venir...</p>
                   </div>
                 )}
 
                 {activeSection === "security" && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Sécurité</h3>
-                    <p className="text-muted-foreground">
-                      Configurez les paramètres de sécurité et de confidentialité.
-                    </p>
+                  <div className="p-4 md:p-6 bg-card/50 backdrop-blur rounded-2xl border border-border/50">
+                    <p className="text-sm md:text-base text-muted-foreground">Paramètres de sécurité à venir...</p>
                   </div>
                 )}
 
                 {activeSection === "settings" && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Paramètres</h3>
-                    <p className="text-muted-foreground">
-                      Paramètres généraux de l'application.
-                    </p>
+                  <div className="p-4 md:p-6 bg-card/50 backdrop-blur rounded-2xl border border-border/50 space-y-4">
+                    <h4 className="font-medium text-sm md:text-base">Préférences d'affichage</h4>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm md:text-base">Thème</span>
+                      <select className="px-3 md:px-4 py-2 rounded-xl border border-border/50 bg-background/50 focus:outline-none focus:ring-2 focus:ring-accent/50 text-sm md:text-base">
+                        <option>Papier de Riz (Clair)</option>
+                        <option>Nuit d'Encre (Sombre)</option>
+                      </select>
+                    </div>
                   </div>
                 )}
               </div>

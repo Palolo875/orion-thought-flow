@@ -54,43 +54,43 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Thème "Nuit d'Encre" - Mode Sombre */
-    --background: 180 5% 11%;
-    --foreground: 48 10% 96%;
+    /* Thème "Nuit d'Encre" - Mode Sombre Anthracite Pastel */
+    --background: 220 10% 16%;
+    --foreground: 30 15% 88%;
     
-    --card: 180 5% 13%;
-    --card-foreground: 48 10% 96%;
+    --card: 220 10% 18%;
+    --card-foreground: 30 15% 88%;
     
-    --popover: 180 5% 11%;
-    --popover-foreground: 48 10% 96%;
+    --popover: 220 10% 16%;
+    --popover-foreground: 30 15% 88%;
     
-    --primary: 48 10% 96%;
-    --primary-foreground: 180 5% 11%;
+    --primary: 30 15% 88%;
+    --primary-foreground: 220 10% 16%;
     
-    --secondary: 0 0% 50%;
-    --secondary-foreground: 48 10% 96%;
+    --secondary: 220 5% 45%;
+    --secondary-foreground: 30 15% 88%;
     
-    --muted: 0 0% 25%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 220 8% 30%;
+    --muted-foreground: 30 10% 70%;
     
-    --accent: 45 44% 56%;
-    --accent-foreground: 180 5% 11%;
+    --accent: 25 60% 65%;
+    --accent-foreground: 220 10% 16%;
     
-    --destructive: 0 62% 50%;
+    --destructive: 0 50% 55%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 45 44% 56%;
+    --border: 220 8% 28%;
+    --input: 220 8% 28%;
+    --ring: 25 60% 65%;
     
-    --sidebar-background: 180 5% 13%;
-    --sidebar-foreground: 48 10% 96%;
-    --sidebar-primary: 45 44% 56%;
-    --sidebar-primary-foreground: 180 5% 11%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 48 10% 96%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 45 44% 56%;
+    --sidebar-background: 220 10% 18%;
+    --sidebar-foreground: 30 15% 88%;
+    --sidebar-primary: 25 60% 65%;
+    --sidebar-primary-foreground: 220 10% 16%;
+    --sidebar-accent: 220 8% 25%;
+    --sidebar-accent-foreground: 30 15% 88%;
+    --sidebar-border: 220 8% 25%;
+    --sidebar-ring: 25 60% 65%;
   }
 }
 
