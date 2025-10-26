@@ -42,29 +42,29 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl w-[95vw] h-[95vh] md:h-[90vh] p-0 gap-0 rounded-2xl md:rounded-3xl overflow-hidden">
-        <div className="flex flex-col md:flex-row h-full">
+      <DialogContent className="max-w-6xl w-[98vw] h-[96vh] sm:w-[95vw] sm:h-[92vh] p-0 gap-0 rounded-xl sm:rounded-2xl overflow-hidden">
+        <div className="flex flex-col sm:flex-row h-full">
           {/* Navigation latérale - Responsive */}
-          <div className="w-full md:w-56 lg:w-64 bg-muted/20 border-b md:border-b-0 md:border-r border-border/50 flex-shrink-0">
-            <div className="p-4 md:p-5 border-b border-border/50">
-              <h2 className="font-light text-xl md:text-2xl tracking-wide">Control Center</h2>
+          <div className="w-full sm:w-56 lg:w-64 bg-muted/20 border-b sm:border-b-0 sm:border-r border-border/50 flex-shrink-0">
+            <div className="p-3 sm:p-4 md:p-5 border-b border-border/50">
+              <h2 className="font-light text-lg sm:text-xl md:text-2xl tracking-wide">Control Center</h2>
             </div>
-            <ScrollArea className="h-[120px] md:h-[calc(90vh-5rem)]">
-              <nav className="p-3 flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible">
+            <ScrollArea className="h-[100px] sm:h-[calc(92vh-4rem)]">
+              <nav className="p-2 sm:p-3 flex sm:flex-col gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-x-visible">
                 {sections.map((section) => {
                   const Icon = section.icon;
                   return (
                     <button
                       key={section.id}
                       onClick={() => setActiveSection(section.id)}
-                      className={`flex items-center gap-3 px-3 md:px-4 py-2.5 rounded-xl transition-all whitespace-nowrap ${
+                      className={`flex items-center gap-2 sm:gap-3 px-3 py-2 sm:py-2.5 rounded-lg sm:rounded-xl transition-all whitespace-nowrap text-sm ${
                         activeSection === section.id
-                          ? "bg-accent/20 text-accent font-medium border-l-2 md:border-l-4 border-accent"
+                          ? "bg-primary text-primary-foreground font-medium shadow-sm"
                           : "hover:bg-accent/10 hover:text-accent text-muted-foreground"
                       }`}
                     >
                       <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-                      <span className="text-sm">{section.label}</span>
+                      <span>{section.label}</span>
                     </button>
                   );
                 })}
@@ -75,12 +75,12 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
           {/* Contenu */}
           <div className="flex-1 overflow-hidden flex flex-col">
             <ScrollArea className="flex-1">
-              <div className="p-5 md:p-6 lg:p-8 space-y-6 pb-20 md:pb-6">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-light mb-2">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-2">
                     {getSectionContent(activeSection).title}
                   </h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
+                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
                     {getSectionContent(activeSection).description}
                   </p>
                 </div>

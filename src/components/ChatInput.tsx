@@ -24,6 +24,7 @@ export const ChatInput = ({
   const [input, setInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
+  const [voiceTranscript, setVoiceTranscript] = useState("");
   const recordingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleSend = () => {
@@ -62,17 +63,22 @@ export const ChatInput = ({
         clearInterval(recordingIntervalRef.current);
         recordingIntervalRef.current = null;
       }
+      // Simuler la transcription vocale et l'afficher dans le champ de saisie
+      const transcript = "Transcription du message vocal...";
+      setVoiceTranscript(transcript);
+      setInput(transcript);
+      
+      if (onVoiceRecord) {
+        onVoiceRecord();
+      }
     } else {
       // Start recording
       setIsRecording(true);
       setRecordingTime(0);
+      setVoiceTranscript("");
       recordingIntervalRef.current = setInterval(() => {
         setRecordingTime(prev => prev + 1);
       }, 1000);
-    }
-    
-    if (onVoiceRecord) {
-      onVoiceRecord();
     }
   };
 

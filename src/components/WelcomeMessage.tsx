@@ -55,7 +55,7 @@ export const WelcomeMessage = () => {
   return (
     <div className="text-center space-y-6 animate-slide-up relative">
       {/* Illustration décorative en arrière-plan fusionnée avec des dégradés multiples */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden opacity-10">
+      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden opacity-30">
         <div 
           className="w-full h-full scale-125 animate-float"
           style={{
@@ -71,15 +71,16 @@ export const WelcomeMessage = () => {
       </div>
       
       <div className="flex items-center justify-center gap-4 mb-4">
-        <img 
-          src={orionLogo}
-          alt="ORION"
-          className="w-20 h-20 md:w-32 md:h-32 animate-float object-contain"
-          style={{
-            filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08))',
-            mixBlendMode: 'normal'
-          }}
-        />
+        <div className="relative w-20 h-20 md:w-32 md:h-32">
+          <img 
+            src={orionLogo}
+            alt="ORION Avatar"
+            className="w-full h-full rounded-full object-cover border-2 border-primary/20 animate-float"
+            style={{
+              filter: 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.12))',
+            }}
+          />
+        </div>
       </div>
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight">
         ORION
