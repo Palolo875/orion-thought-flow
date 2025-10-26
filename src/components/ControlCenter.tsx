@@ -42,15 +42,15 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl w-[95vw] h-[90vh] md:h-[85vh] p-0 gap-0 rounded-3xl overflow-hidden">
+      <DialogContent className="max-w-5xl w-[95vw] h-[95vh] md:h-[90vh] p-0 gap-0 rounded-2xl md:rounded-3xl overflow-hidden">
         <div className="flex flex-col md:flex-row h-full">
           {/* Navigation latérale - Responsive */}
-          <div className="w-full md:w-56 lg:w-64 bg-muted/20 border-b md:border-b-0 md:border-r border-border/50">
-            <div className="p-3 md:p-4 border-b border-border/50">
-              <h2 className="font-light text-lg md:text-xl tracking-wide">Control Center</h2>
+          <div className="w-full md:w-56 lg:w-64 bg-muted/20 border-b md:border-b-0 md:border-r border-border/50 flex-shrink-0">
+            <div className="p-4 md:p-5 border-b border-border/50">
+              <h2 className="font-light text-xl md:text-2xl tracking-wide">Control Center</h2>
             </div>
-            <ScrollArea className="h-auto md:h-[calc(85vh-4rem)]">
-              <nav className="p-2 flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible">
+            <ScrollArea className="h-[120px] md:h-[calc(90vh-5rem)]">
+              <nav className="p-3 flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible">
                 {sections.map((section) => {
                   const Icon = section.icon;
                   return (
@@ -73,9 +73,9 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
           </div>
 
           {/* Contenu */}
-          <div className="flex-1 overflow-hidden">
-            <ScrollArea className="h-full">
-              <div className="p-4 md:p-6 lg:p-8 space-y-6">
+          <div className="flex-1 overflow-hidden flex flex-col">
+            <ScrollArea className="flex-1">
+              <div className="p-5 md:p-6 lg:p-8 space-y-6 pb-20 md:pb-6">
                 <div>
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-light mb-2">
                     {getSectionContent(activeSection).title}

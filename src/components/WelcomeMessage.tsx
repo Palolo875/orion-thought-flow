@@ -54,21 +54,34 @@ export const WelcomeMessage = () => {
 
   return (
     <div className="text-center space-y-6 animate-slide-up relative">
-      {/* Illustration décorative en arrière-plan */}
-      <div className="absolute inset-0 -z-10 opacity-10 flex items-center justify-center overflow-hidden">
-        <img 
-          src={decorationFlow} 
-          alt="" 
-          className="w-full max-w-2xl object-contain animate-float"
+      {/* Illustration décorative en arrière-plan avec masque gradient */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
+        <div 
+          className="w-full h-full max-w-4xl opacity-15 animate-float"
+          style={{
+            backgroundImage: `url(${decorationFlow})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 20%, transparent 80%)'
+          }}
           aria-hidden="true"
         />
       </div>
       
       <div className="flex items-center justify-center gap-4 mb-4">
-        <img 
-          src={orionLogo} 
-          alt="ORION" 
-          className="w-16 h-16 md:w-24 md:h-24 object-contain opacity-90"
+        <div 
+          className="w-20 h-20 md:w-32 md:h-32 opacity-95 animate-float"
+          style={{
+            backgroundImage: `url(${orionLogo})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1))'
+          }}
+          role="img"
+          aria-label="ORION"
         />
       </div>
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight">

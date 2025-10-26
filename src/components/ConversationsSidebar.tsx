@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { X, MessageSquare, Trash2, Edit2 } from "lucide-react";
+import { X, MessageSquare, Trash2, Edit3, MoreVertical, Archive, Pin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Conversation {
   id: string;
@@ -70,52 +77,84 @@ export const ConversationsSidebar = ({
 
         {/* Liste des conversations */}
         <ScrollArea className="flex-1">
-          <div className="p-2 space-y-1">
+          <div className="p-3 space-y-2">
             {conversations.map((conv) => (
               <div
                 key={conv.id}
-                className={`relative group rounded-2xl transition-colors ${
+                className={`relative group rounded-2xl transition-all border ${
                   currentConversationId === conv.id
-                    ? "bg-accent/10 border border-accent/20"
-                    : "hover:bg-muted"
+                    ? "bg-accent/10 border-accent/30 shadow-sm"
+                    : "hover:bg-muted/50 border-transparent hover:border-border/50"
                 }`}
                 onMouseEnter={() => setHoveredId(conv.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
                 <button
                   onClick={() => onSelectConversation(conv.id)}
-                  className="w-full text-left p-3 pr-12"
+                  className="w-full text-left p-4"
                 >
-                  <p className="font-medium truncate">{conv.title}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{conv.date}</p>
-                </button>
-                
-                {hoveredId === conv.id && (
-                  <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-full"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Implémenter l'édition
-                      }}
-                    >
-                      <Edit2 className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-full text-destructive hover:text-destructive"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDeleteConversation(conv.id);
-                      }}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <MessageSquare className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                        <p className="font-medium truncate text-sm leading-tight">{conv.title}</p>
+                        
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={`h-7 w-7 rounded-full shrink-0 transition-opacity ${
+                                hoveredId === conv.id ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <MoreVertical className="h-4 w-4" strokeWidth={1.5} />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-52">
+                            <DropdownMenuItem className="gap-3 py-2.5">
+                              <Pin className="h-4 w-4" strokeWidth={1.5} />
+                              <span>Épingler</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="gap-3 py-2.5">
+                              <Edit3 className="h-4 w-4" strokeWidth={1.5} />
+                              <span>Renommer</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="gap-3 py-2.5">
+                              <Archive className="h-4 w-4" strokeWidth={1.5} />
+                              <span>Archiver</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem 
+                              className="gap-3 py-2.5 text-destructive focus:text-destructive"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onDeleteConversation(conv.id);
+                              }}
+                            >
+                              <Trash2 className="h-4 w-4" strokeWidth={1.5} />
+                              <span>Supprimer</span>
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                      
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span>{conv.date}</span>
+                        <span>•</span>
+                        <span className={`transition-opacity ${
+                          hoveredId === conv.id ? 'opacity-100' : 'opacity-0'
+                        }`}>
+                          12 messages
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                )}
+                </button>
               </div>
             ))}
           </div>
