@@ -54,34 +54,31 @@ export const WelcomeMessage = () => {
 
   return (
     <div className="text-center space-y-6 animate-slide-up relative">
-      {/* Illustration décorative en arrière-plan avec masque gradient */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
+      {/* Illustration décorative en arrière-plan fusionnée avec des dégradés multiples */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden opacity-10">
         <div 
-          className="w-full h-full max-w-4xl opacity-15 animate-float"
+          className="w-full h-full scale-125 animate-float"
           style={{
             backgroundImage: `url(${decorationFlow})`,
-            backgroundSize: 'contain',
+            backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 20%, transparent 80%)'
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 100%)',
           }}
           aria-hidden="true"
         />
       </div>
       
       <div className="flex items-center justify-center gap-4 mb-4">
-        <div 
-          className="w-20 h-20 md:w-32 md:h-32 opacity-95 animate-float"
+        <img 
+          src={orionLogo}
+          alt="ORION"
+          className="w-20 h-20 md:w-32 md:h-32 animate-float object-contain"
           style={{
-            backgroundImage: `url(${orionLogo})`,
-            backgroundSize: 'contain',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1))'
+            filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08))',
+            mixBlendMode: 'normal'
           }}
-          role="img"
-          aria-label="ORION"
         />
       </div>
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight">
