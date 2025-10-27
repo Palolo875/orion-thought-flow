@@ -54,16 +54,16 @@ export const WelcomeMessage = () => {
 
   return (
     <div className="text-center space-y-6 animate-slide-up relative">
-      {/* Peinture organique en arrière-plan couvrant toute l'interface */}
-      <div className="fixed inset-0 -z-10 overflow-hidden opacity-40">
+      {/* Peinture organique statique en arrière-plan couvrant toute l'interface */}
+      <div className="fixed inset-0 -z-50 overflow-hidden opacity-20">
         <div 
-          className="w-full h-full animate-float"
+          className="w-full h-full"
           style={{
             backgroundImage: `url(${decorationFlow})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            mixBlendMode: 'multiply',
+            mixBlendMode: 'soft-light',
           }}
           aria-hidden="true"
         />
