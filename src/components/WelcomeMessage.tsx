@@ -54,31 +54,31 @@ export const WelcomeMessage = () => {
 
   return (
     <div className="text-center space-y-6 animate-slide-up relative">
-      {/* Background avec effet d'aurore - fusionné sans bordures */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
+      {/* Illustration décorative en arrière-plan fusionnée avec des dégradés multiples */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden opacity-30">
         <div 
-          className="w-full h-full"
+          className="w-full h-full scale-125 animate-float"
           style={{
             backgroundImage: `url(${decorationFlow})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            opacity: 0.85,
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 100%)',
           }}
           aria-hidden="true"
         />
       </div>
       
       <div className="flex items-center justify-center gap-4 mb-4">
-        <div className="relative w-24 h-24 md:w-32 md:h-32">
-          {/* Halo lumineux animé */}
-          <div className="absolute inset-0 rounded-full animate-pulse-glow opacity-50 blur-2xl bg-gradient-to-br from-violet-500 via-blue-500 to-purple-600" />
-          
-          {/* Avatar ORION énergétique */}
+        <div className="relative w-20 h-20 md:w-32 md:h-32">
           <img 
             src={orionLogo}
             alt="ORION Avatar"
-            className="relative w-full h-full object-contain animate-float animate-orb-pulse"
+            className="w-full h-full rounded-full object-cover border-2 border-primary/20 animate-float"
+            style={{
+              filter: 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.12))',
+            }}
           />
         </div>
       </div>
