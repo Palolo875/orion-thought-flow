@@ -42,14 +42,14 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl w-[98vw] h-[96vh] sm:w-[95vw] sm:h-[92vh] p-0 gap-0 rounded-xl sm:rounded-2xl overflow-hidden">
+      <DialogContent className="max-w-6xl w-[90vw] h-[90vh] sm:w-[95vw] sm:h-[92vh] p-0 gap-0 rounded-2xl overflow-hidden">
         <div className="flex flex-col sm:flex-row h-full">
           {/* Navigation latérale - Responsive */}
           <div className="w-full sm:w-56 lg:w-64 bg-muted/20 border-b sm:border-b-0 sm:border-r border-border/50 flex-shrink-0">
-            <div className="p-3 sm:p-4 md:p-5 border-b border-border/50">
-              <h2 className="font-light text-lg sm:text-xl md:text-2xl tracking-wide">Control Center</h2>
+            <div className="p-4 sm:p-5 md:p-6 border-b border-border/50">
+              <h2 className="font-light text-xl sm:text-xl md:text-2xl tracking-wide">Control Center</h2>
             </div>
-            <ScrollArea className="h-[100px] sm:h-[calc(92vh-4rem)]">
+            <ScrollArea className="h-[140px] sm:h-[calc(90vh-5rem)]">
               <nav className="p-2 sm:p-3 flex sm:flex-col gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-x-visible">
                 {sections.map((section) => {
                   const Icon = section.icon;
@@ -75,7 +75,7 @@ export const ControlCenter = ({ isOpen, onClose }: ControlCenterProps) => {
           {/* Contenu */}
           <div className="flex-1 overflow-hidden flex flex-col">
             <ScrollArea className="flex-1">
-              <div className="p-4 sm:p-5 md:p-6 lg:p-8 space-y-4 sm:space-y-6">
+              <div className="p-5 sm:p-6 md:p-7 lg:p-8 space-y-5 sm:space-y-6">
                 <div>
                   <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-2">
                     {getSectionContent(activeSection).title}
