@@ -54,17 +54,16 @@ export const WelcomeMessage = () => {
 
   return (
     <div className="text-center space-y-6 animate-slide-up relative">
-      {/* Illustration décorative en arrière-plan fusionnée avec des dégradés multiples */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden opacity-30">
+      {/* Peinture organique en arrière-plan couvrant toute l'interface */}
+      <div className="fixed inset-0 -z-10 overflow-hidden opacity-40">
         <div 
-          className="w-full h-full scale-125 animate-float"
+          className="w-full h-full animate-float"
           style={{
             backgroundImage: `url(${decorationFlow})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 100%)',
+            mixBlendMode: 'multiply',
           }}
           aria-hidden="true"
         />
