@@ -74,7 +74,7 @@ export const WelcomeMessage = () => {
           <img 
             src={orionLogo}
             alt="ORION Avatar"
-            className="w-full h-full rounded-full object-cover border-2 border-primary/20 animate-float"
+            className="w-full h-full rounded-full object-cover border-2 border-primary/20"
             style={{
               filter: 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.12))',
             }}
